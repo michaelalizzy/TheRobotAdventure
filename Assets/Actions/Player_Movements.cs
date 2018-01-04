@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player_Move : MonoBehaviour {
+public class Player_Movements : MonoBehaviour {
 
-	private int playerSpeed = 10;
+	private int playerSpeed, jumpPower;
 	private bool facingRight;
-	private int jumpPower = 1250;
 	private float xDirection;
 
 	// Use this for initialization
 	void Start () {
-	
+		playerSpeed = 10;
+		jumpPower = 1250;
 	}
 	 
 	// Move player's sprite based on button pressed
@@ -46,6 +46,13 @@ public class Player_Move : MonoBehaviour {
 		localScale.x *= -1;
 		transform.localScale = localScale;
 	}
+
+	/*void OnCollisionEnter2D (BoxCollider2D otherObj) {
+		if (otherObj.gameObject.tag == "Garbage") {
+			toggleInventory ();
+
+		}
+	}*/
 
 	// Update is called once per frame
 	void Update () {
