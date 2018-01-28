@@ -12,24 +12,18 @@ public class Player_Health : MonoBehaviour {
 	void Start () {
 		alive = true;
 		healthPoints = 3;
-		Debug.Log ("Start Alive: " + alive);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("Alive: " + alive);
 		if (gameObject.transform.position.y < -7) {
 			alive = false;
-		}
-		if (alive == false) {
-			StartCoroutine ("Die");
+			die ();
 		}
 	}
 
 	// Player has fallen and died
-	IEnumerator Die() {
-		Debug.Log ("Alive: " + alive);
+	void die() {
 		SceneManager.LoadScene ("Main");
-		yield return null;
 	}
 }

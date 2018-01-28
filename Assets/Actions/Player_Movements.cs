@@ -5,13 +5,18 @@ using System.Collections.Generic;
 public class Player_Movements : MonoBehaviour {
 
 	private int playerSpeed, jumpPower;
-	private bool facingRight;
+	private bool facingRight, onGround;
 	private float xDirection;
 
 	// Use this for initialization
 	void Start () {
 		playerSpeed = 10;
 		jumpPower = 1250;
+	}
+
+	// Update is called once per frame
+	void Update () {
+		movePlayer ();
 	}
 	 
 	// Move player's sprite based on button pressed
@@ -29,7 +34,7 @@ public class Player_Movements : MonoBehaviour {
 			jumpPlayer();
 		}
 
-		//PHYSICS
+		// PHYSICS
 		gameObject.GetComponent<Rigidbody2D> ().velocity =
 			new Vector2 (xDirection * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 	}
@@ -54,8 +59,11 @@ public class Player_Movements : MonoBehaviour {
 		}
 	}*/
 
-	// Update is called once per frame
-	void Update () {
-		movePlayer ();
+	void onCollisionEnter2D(Collision2D col) {
+		Debug.Log ("Player has collided with " + col.collider.name);
+		//if (col.gameObject.tag.Contains("grass")) {
+		//	onGround = true;
+		//}
+		//Debug.Log ("onGround: " + onGround);
 	}
 }
